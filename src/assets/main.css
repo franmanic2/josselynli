@@ -1,35 +1,56 @@
-@import './base.css';
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-#app {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  font-weight: normal;
+/* Modal transitions */
+.modal-enter-active,
+.modal-leave-active {
+  transition: opacity 150ms ease, transform 200ms ease-out;
+}
+.modal-enter-from,
+.modal-leave-to {
+  opacity: 0;
+  transform: scale(0.95);
 }
 
-a,
-.green {
-  text-decoration: none;
-  color: hsla(160, 100%, 37%, 1);
-  transition: 0.4s;
-  padding: 3px;
+/* Modal overlay */
+.overlay-enter-active,
+.overlay-leave-active {
+  transition: opacity 150ms ease;
+}
+.overlay-enter-from,
+.overlay-leave-to {
+  opacity: 0;
 }
 
-@media (hover: hover) {
-  a:hover {
-    background-color: hsla(160, 100%, 37%, 0.2);
-  }
+/* Toast transitions */
+.toast-enter-active {
+  transition: all 300ms ease-out;
+}
+.toast-leave-active {
+  transition: all 300ms ease-in;
+}
+.toast-enter-from,
+.toast-leave-to {
+  opacity: 0;
+  transform: translateX(100%);
 }
 
-@media (min-width: 1024px) {
-  body {
-    display: flex;
-    place-items: center;
-  }
+/* List card transitions */
+.list-enter-active {
+  transition: all 250ms ease-out;
+}
+.list-leave-active {
+  transition: all 200ms ease-in;
+}
+.list-enter-from {
+  opacity: 0;
+  transform: translateY(8px);
+}
+.list-leave-to {
+  opacity: 0;
+}
 
-  #app {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    padding: 0 2rem;
-  }
+* {
+  will-change: auto;
 }
