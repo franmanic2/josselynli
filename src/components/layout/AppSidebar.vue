@@ -48,18 +48,18 @@ async function handleLogout() {
   <!-- Sidebar -->
   <aside
     :class="[
-      'fixed top-0 left-0 h-full w-[220px] bg-lila-dark z-40 flex flex-col transition-transform duration-300',
+      'fixed top-0 left-0 h-full w-[220px] bg-lila-dark dark:bg-[#13111A] border-r border-transparent dark:border-white/[0.05] z-40 flex flex-col transition-all duration-200',
       open ? 'translate-x-0' : '-translate-x-full md:translate-x-0',
     ]"
   >
     <!-- Logo -->
-    <div class="flex items-center gap-3 px-5 py-5 border-b border-white/10">
-      <div class="w-10 h-10 bg-white rounded-xl flex items-center justify-center flex-shrink-0">
-        <span class="text-lila-dark font-semibold text-sm">JL</span>
+    <div class="flex items-center gap-3 px-5 py-5 border-b border-white/10 dark:border-white/[0.05]">
+      <div class="w-10 h-10 bg-white dark:bg-white/[0.08] rounded-xl flex items-center justify-center flex-shrink-0 transition-colors duration-200">
+        <span class="text-lila-dark dark:text-[#C8B4E3] font-semibold text-sm">JL</span>
       </div>
       <div>
         <p class="text-white font-semibold text-sm leading-tight tracking-tight">Joselyn Li</p>
-        <p class="text-white/60 text-xs uppercase tracking-widest">Pastelería</p>
+        <p class="text-white/60 dark:text-white/40 text-xs uppercase tracking-widest">Pastelería</p>
       </div>
     </div>
 
@@ -71,10 +71,10 @@ async function handleLogout() {
         :to="item.path"
         @click="emit('close')"
         :class="[
-          'flex items-center gap-3 px-3 py-2.5 rounded-lg transition-colors',
+          'flex items-center gap-3 px-3 py-2.5 rounded-lg transition-all duration-200',
           isActive(item.path)
-            ? 'bg-white text-lila-dark font-semibold'
-            : 'text-white/80 hover:bg-white/10',
+            ? 'bg-white text-lila-dark dark:bg-white/[0.08] dark:text-[#C8B4E3] font-semibold'
+            : 'text-white/80 dark:text-white/60 hover:bg-white/10 dark:hover:bg-white/[0.04]',
         ]"
       >
         <svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
@@ -88,7 +88,7 @@ async function handleLogout() {
     <div class="px-3 pb-5">
       <button
         @click="handleLogout"
-        class="flex items-center gap-3 w-full px-3 py-2.5 rounded-lg text-white/70 hover:bg-white/10 transition-colors"
+        class="flex items-center gap-3 w-full px-3 py-2.5 rounded-lg text-white/70 dark:text-white/60 hover:bg-white/10 dark:hover:bg-white/[0.04] transition-colors"
       >
         <svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
