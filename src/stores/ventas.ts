@@ -5,6 +5,7 @@ import {
   onSnapshot,
   addDoc,
   updateDoc,
+  deleteDoc,
   doc,
   Timestamp,
   type Unsubscribe,
@@ -21,6 +22,7 @@ export interface Venta {
   fechaRegistro: Timestamp
   fechaEntrega: Timestamp
   estado: 'pendiente' | 'entregado'
+  cantidad?: number
 }
 
 export const useVentasStore = defineStore('ventas', () => {
@@ -45,6 +47,7 @@ export const useVentasStore = defineStore('ventas', () => {
     precioVenta: number
     nombreCliente: string
     fechaEntrega: Date
+    cantidad: number
   }) {
     await addDoc(collection(db, 'ventas'), {
       ...data,
@@ -58,5 +61,9 @@ export const useVentasStore = defineStore('ventas', () => {
     await updateDoc(doc(db, 'ventas', id), { estado: 'entregado' })
   }
 
-  return { ventas, startListening, stopListening, addVenta, markAsDelivered }
+  async function deleteVenta(id: string) {
+    await deleteDoc(doc(db, 'ventas', id))
+  }
+
+  return { ventas, startListening, stopListening, addVenta, markAsDelivered, deleteVenta }
 })
