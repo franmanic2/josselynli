@@ -24,21 +24,21 @@ const emit = defineEmits<{
           </svg>
         </div>
         <div>
-          <h3 class="text-[#2C2C2A] font-semibold mb-1">{{ title || '¿Estás segura?' }}</h3>
-          <p class="text-sm text-[#87858F]">{{ message || 'Esta acción no se puede deshacer.' }}</p>
+          <h3 class="text-[#2C2C2A] dark:text-[#E2DFF0] font-semibold mb-1">{{ title || '¿Estás segura?' }}</h3>
+          <p class="text-sm text-[#87858F] dark:text-[#9A95B0]">{{ message || 'Esta acción no se puede deshacer.' }}</p>
         </div>
       </div>
       <div class="flex justify-end gap-3 mt-6">
         <button
           @click="emit('update:modelValue', false)"
-          class="px-4 py-2 rounded-md text-sm font-medium text-[#87858F] hover:bg-gray-50 border border-black/[0.09] transition-colors"
+          class="px-4 py-2 rounded-md text-sm font-medium text-[#87858F] dark:text-[#9A95B0] hover:bg-gray-50 dark:hover:bg-white/[0.04] border border-black/[0.09] dark:border-white/[0.05] transition-colors"
         >
           Cancelar
         </button>
         <button
           @click="emit('confirm')"
           :disabled="loading"
-          class="px-4 py-2 rounded-md text-sm font-medium bg-[#FBEDED] text-[#C97C7C] hover:bg-[#f7d9d9] transition-colors disabled:opacity-60"
+          class="px-4 py-2 rounded-md text-sm font-medium bg-[#FBEDED] dark:bg-[#3A1E1E] text-[#C97C7C] dark:text-[#ECA1A1] hover:bg-[#f7d9d9] dark:hover:bg-[#4E2A2A] transition-colors disabled:opacity-60"
         >
           {{ loading ? 'Eliminando...' : (confirmLabel || 'Eliminar') }}
         </button>
