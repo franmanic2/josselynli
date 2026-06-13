@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref, computed } from 'vue'
 import { useVentasStore } from '@/stores/ventas'
+import { useThemeStore } from '@/stores/theme'
 import MetricCard from '@/components/ui/MetricCard.vue'
 import VentasTable from '@/components/ventas/VentasTable.vue'
 import { Bar } from 'vue-chartjs'
@@ -17,6 +18,7 @@ import {
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend)
 
 const ventasStore = useVentasStore()
+const themeStore = useThemeStore()
 
 const now = new Date()
 const selectedYear = ref(now.getFullYear())
@@ -45,7 +47,7 @@ const cantidadVentas = computed(() => ventasMes.value.length)
 const postreMasVendido = computed(() => {
   const counts: Record<string, number> = {}
   for (const v of ventasMes.value) {
-    counts[v.nombrePostre] = (counts[v.nombrePostre] || 0) + 1
+    counts[v.nombrePostre] = (counts[v.nombrePostre] || 0) + (v.cantidad || 1)
   }
   const entries = Object.entries(counts).sort((a, b) => b[1] - a[1])
   return entries[0]?.[0] ?? '—'
@@ -77,7 +79,7 @@ const chartData = computed(() => ({
   ],
 }))
 
-const chartOptions = {
+const chartOptions = computed(() => ({
   responsive: true,
   maintainAspectRatio: false,
   plugins: {
@@ -94,16 +96,16 @@ const chartOptions = {
       ticks: {
         callback: (value: number | string) => `S/ ${value}`,
         font: { size: 11 },
-        color: '#87858F',
+        color: themeStore.isDark ? '#9A95B0' : '#87858F',
       },
-      grid: { color: 'rgba(44,44,42,0.06)' },
+      grid: { color: themeStore.isDark ? 'rgba(255,255,255,0.05)' : 'rgba(44,44,42,0.06)' },
     },
     x: {
-      ticks: { font: { size: 11 }, color: '#87858F' },
+      ticks: { font: { size: 11 }, color: themeStore.isDark ? '#9A95B0' : '#87858F' },
       grid: { display: false },
     },
   },
-}
+}))
 
 const ventasSorted = computed(() =>
   [...ventasMes.value].sort((a, b) => a.fechaEntrega.toMillis() - b.fechaEntrega.toMillis()),
@@ -115,21 +117,21 @@ const ventasSorted = computed(() =>
     <!-- Header + filters -->
     <div class="flex flex-wrap items-center justify-between gap-4 mb-6">
       <div>
-        <h2 class="text-xl font-semibold text-[#2C2C2A] tracking-tight">Resumen Mensual</h2>
-        <p class="text-sm text-[#87858F] mt-0.5">Métricas y gráficos del período</p>
+        <h2 class="text-xl font-semibold text-[#2C2C2A] dark:text-[#E2DFF0] tracking-tight">Resumen Mensual</h2>
+        <p class="text-sm text-[#87858F] dark:text-[#9A95B0] mt-0.5">Métricas y gráficos del período</p>
       </div>
       <div class="flex gap-3">
         <select
           v-model="selectedMonth"
-          class="px-3 py-2 rounded-lg border border-black/[0.09] text-sm text-[#2C2C2A] focus:outline-none focus:ring-2 focus:ring-lila-medium/30 focus:border-lila-medium bg-white transition-colors"
+          class="px-3 py-2 rounded-lg border border-black/[0.09] dark:border-white/[0.05] text-sm text-[#2C2C2A] dark:text-[#E2DFF0] focus:outline-none focus:ring-2 focus:ring-lila-medium/30 focus:border-lila-medium bg-white dark:bg-[#13111A] transition-colors"
         >
-          <option v-for="(m, i) in months" :key="i" :value="i">{{ m }}</option>
+          <option v-for="(m, i) in months" :key="i" :value="i" class="dark:bg-[#13111A]">{{ m }}</option>
         </select>
         <select
           v-model="selectedYear"
-          class="px-3 py-2 rounded-lg border border-black/[0.09] text-sm text-[#2C2C2A] focus:outline-none focus:ring-2 focus:ring-lila-medium/30 focus:border-lila-medium bg-white transition-colors"
+          class="px-3 py-2 rounded-lg border border-black/[0.09] dark:border-white/[0.05] text-sm text-[#2C2C2A] dark:text-[#E2DFF0] focus:outline-none focus:ring-2 focus:ring-lila-medium/30 focus:border-lila-medium bg-white dark:bg-[#13111A] transition-colors"
         >
-          <option v-for="y in years" :key="y" :value="y">{{ y }}</option>
+          <option v-for="y in years" :key="y" :value="y" class="dark:bg-[#13111A]">{{ y }}</option>
         </select>
       </div>
     </div>
@@ -154,8 +156,8 @@ const ventasSorted = computed(() =>
     </div>
 
     <!-- Bar chart -->
-    <div class="bg-white rounded-xl border border-black/[0.09] shadow-sm p-5 mb-6">
-      <h3 class="font-semibold text-[#2C2C2A] tracking-tight mb-4">Ingresos por semana</h3>
+    <div class="bg-white dark:bg-[#171520] rounded-xl border border-black/[0.09] dark:border-white/[0.05] shadow-sm p-5 mb-6 transition-colors duration-200">
+      <h3 class="font-semibold text-[#2C2C2A] dark:text-[#E2DFF0] tracking-tight mb-4">Ingresos por semana</h3>
       <div class="h-56">
         <Bar :data="chartData" :options="chartOptions as any" />
       </div>
@@ -163,7 +165,7 @@ const ventasSorted = computed(() =>
 
     <!-- Ventas table -->
     <div class="mb-3">
-      <h3 class="font-semibold text-[#2C2C2A] tracking-tight">
+      <h3 class="font-semibold text-[#2C2C2A] dark:text-[#E2DFF0] tracking-tight">
         Ventas de {{ months[selectedMonth] }} {{ selectedYear }}
       </h3>
     </div>
