@@ -59,7 +59,7 @@ const postresMasVendidos = computed(() => {
     }
     const postre = counts[v.postreId]
     if (postre) {
-      postre.count++
+      postre.count += v.cantidad || 1
     }
   }
   return Object.entries(counts)
@@ -83,8 +83,8 @@ const movimientosRecientes = computed(() =>
     <!-- Header -->
     <div class="flex items-center justify-between mb-7">
       <div>
-        <h2 class="text-2xl font-semibold text-[#2C2C2A] tracking-tight">Hola, Joselyn 👋</h2>
-        <p class="text-sm text-[#87858F] mt-0.5 capitalize">{{ todayStr }}</p>
+        <h2 class="text-2xl font-semibold text-[#2C2C2A] dark:text-[#E2DFF0] tracking-tight">Hola, Joselyn 👋</h2>
+        <p class="text-sm text-[#87858F] dark:text-[#9A95B0] mt-0.5 capitalize">{{ todayStr }}</p>
       </div>
       <button
         @click="showSaleModal = true"
@@ -125,9 +125,9 @@ const movimientosRecientes = computed(() =>
 
     <div class="grid lg:grid-cols-3 gap-5">
       <!-- Postres más vendidos -->
-      <div class="bg-white rounded-xl border border-black/[0.09] shadow-sm p-5">
-        <h3 class="font-semibold text-[#2C2C2A] tracking-tight mb-4">Postres más vendidos</h3>
-        <div v-if="postresMasVendidos.length === 0" class="text-center py-6 text-sm text-[#87858F]">
+      <div class="bg-white dark:bg-[#171520] rounded-xl border border-black/[0.09] dark:border-white/[0.05] shadow-sm p-5 transition-colors duration-200">
+        <h3 class="font-semibold text-[#2C2C2A] dark:text-[#E2DFF0] tracking-tight mb-4">Postres más vendidos</h3>
+        <div v-if="postresMasVendidos.length === 0" class="text-center py-6 text-sm text-[#87858F] dark:text-[#9A95B0]">
           Sin ventas registradas
         </div>
         <ul v-else class="space-y-3">
@@ -139,7 +139,7 @@ const movimientosRecientes = computed(() =>
               class="w-9 h-9 rounded-lg object-cover flex-shrink-0"
             />
             <div class="flex-1 min-w-0">
-              <p class="text-sm font-medium text-[#2C2C2A] truncate">{{ postre.nombre }}</p>
+              <p class="text-sm font-medium text-[#2C2C2A] dark:text-[#E2DFF0] truncate">{{ postre.nombre }}</p>
               <div class="flex items-center gap-2 mt-1">
                 <div class="flex-1 bg-lila-tint rounded-full h-1.5 overflow-hidden">
                   <div
@@ -147,7 +147,7 @@ const movimientosRecientes = computed(() =>
                     :style="{ width: `${(postre.count / maxVentas) * 100}%` }"
                   />
                 </div>
-                <span class="text-xs text-[#87858F] flex-shrink-0">{{ postre.count }}x</span>
+                <span class="text-xs text-[#87858F] dark:text-[#9A95B0] flex-shrink-0">{{ postre.count }}x</span>
               </div>
             </div>
           </li>
@@ -155,9 +155,9 @@ const movimientosRecientes = computed(() =>
       </div>
 
       <!-- Pedidos pendientes -->
-      <div class="bg-white rounded-xl border border-black/[0.09] shadow-sm p-5">
-        <h3 class="font-semibold text-[#2C2C2A] tracking-tight mb-4">Pedidos pendientes</h3>
-        <div v-if="pedidosPendientes.length === 0" class="text-center py-6 text-sm text-[#87858F]">
+      <div class="bg-white dark:bg-[#171520] rounded-xl border border-black/[0.09] dark:border-white/[0.05] shadow-sm p-5 transition-colors duration-200">
+        <h3 class="font-semibold text-[#2C2C2A] dark:text-[#E2DFF0] tracking-tight mb-4">Pedidos pendientes</h3>
+        <div v-if="pedidosPendientes.length === 0" class="text-center py-6 text-sm text-[#87858F] dark:text-[#9A95B0]">
           No hay pedidos pendientes
         </div>
         <ul v-else class="space-y-3">
@@ -166,9 +166,9 @@ const movimientosRecientes = computed(() =>
             :key="venta.id"
             class="border-l-[3px] border-lila-medium pl-3 py-0.5"
           >
-            <p class="text-sm font-medium text-[#2C2C2A] truncate">{{ venta.nombrePostre }}</p>
-            <p class="text-xs text-[#87858F]">{{ venta.nombreCliente }}</p>
-            <p class="text-xs font-medium mt-0.5" :class="isSameDay(venta.fechaEntrega) ? 'text-lila-dark' : 'text-[#87858F]'">
+            <p class="text-sm font-medium text-[#2C2C2A] dark:text-[#E2DFF0] truncate">{{ venta.nombrePostre }}</p>
+            <p class="text-xs text-[#87858F] dark:text-[#9A95B0]">{{ venta.nombreCliente }}</p>
+            <p class="text-xs font-medium mt-0.5" :class="isSameDay(venta.fechaEntrega) ? 'text-lila-dark dark:text-[#C8B4E3]' : 'text-[#87858F] dark:text-[#9A95B0]'">
               {{ formatDelivery(venta.fechaEntrega) }}
             </p>
           </li>
@@ -176,14 +176,14 @@ const movimientosRecientes = computed(() =>
       </div>
 
       <!-- Movimientos recientes -->
-      <div class="bg-white rounded-xl border border-black/[0.09] shadow-sm p-5">
-        <h3 class="font-semibold text-[#2C2C2A] tracking-tight mb-4">Movimientos recientes</h3>
-        <div v-if="movimientosRecientes.length === 0" class="text-center py-6 text-sm text-[#87858F]">
+      <div class="bg-white dark:bg-[#171520] rounded-xl border border-black/[0.09] dark:border-white/[0.05] shadow-sm p-5 transition-colors duration-200">
+        <h3 class="font-semibold text-[#2C2C2A] dark:text-[#E2DFF0] tracking-tight mb-4">Movimientos recientes</h3>
+        <div v-if="movimientosRecientes.length === 0" class="text-center py-6 text-sm text-[#87858F] dark:text-[#9A95B0]">
           Sin movimientos
         </div>
         <table v-else class="w-full text-xs">
           <thead>
-            <tr class="text-[#87858F] border-b border-black/[0.06]">
+            <tr class="text-[#87858F] dark:text-[#9A95B0] border-b border-black/[0.06] dark:border-white/[0.05]">
               <th class="text-left pb-2 font-medium">Postre</th>
               <th class="text-left pb-2 font-medium">Cliente</th>
               <th class="text-left pb-2 font-medium">Estado</th>
@@ -193,10 +193,10 @@ const movimientosRecientes = computed(() =>
             <tr
               v-for="v in movimientosRecientes"
               :key="v.id"
-              class="border-b border-black/[0.04] last:border-0"
+              class="border-b border-black/[0.04] dark:border-white/[0.05] last:border-0"
             >
-              <td class="py-2 pr-2 font-medium text-[#2C2C2A] truncate max-w-[80px]">{{ v.nombrePostre }}</td>
-              <td class="py-2 pr-2 text-[#87858F] truncate max-w-[70px]">{{ v.nombreCliente }}</td>
+              <td class="py-2 pr-2 font-medium text-[#2C2C2A] dark:text-[#E2DFF0] truncate max-w-[80px]">{{ v.nombrePostre }}</td>
+              <td class="py-2 pr-2 text-[#87858F] dark:text-[#9A95B0] truncate max-w-[70px]">{{ v.nombreCliente }}</td>
               <td class="py-2">
                 <StatusBadge :estado="v.estado" />
               </td>
