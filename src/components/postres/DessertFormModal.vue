@@ -108,21 +108,21 @@ async function handleSubmit() {
 <template>
   <AppModal :model-value="modelValue" @update:model-value="emit('update:modelValue', $event)">
     <div class="p-6">
-      <h2 class="font-semibold text-[#2C2C2A] tracking-tight text-lg mb-5">
+      <h2 class="font-semibold text-[#2C2C2A] dark:text-[#E2DFF0] tracking-tight text-lg mb-5">
         {{ postre ? 'Editar postre' : 'Agregar postre' }}
       </h2>
 
       <!-- Image upload zone -->
       <div
         class="mb-5 border-2 border-dashed rounded-xl overflow-hidden cursor-pointer transition-colors"
-        :class="isDragOver ? 'border-lila-medium bg-lila-tint' : 'border-black/[0.12] hover:border-lila-medium'"
+        :class="isDragOver ? 'border-lila-medium bg-lila-tint dark:bg-lila-dark/10' : 'border-black/[0.12] dark:border-white/[0.05] hover:border-lila-medium'"
         @dragover.prevent="isDragOver = true"
         @dragleave="isDragOver = false"
         @drop.prevent="onDrop"
         @click="fileInputRef?.click()"
       >
         <!-- Loading state -->
-        <div v-if="compressing" class="h-40 flex flex-col items-center justify-center gap-2 text-[#87858F]">
+        <div v-if="compressing" class="h-40 flex flex-col items-center justify-center gap-2 text-[#87858F] dark:text-[#9A95B0]">
           <svg class="w-6 h-6 animate-spin text-lila-medium" fill="none" viewBox="0 0 24 24">
             <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4" />
             <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
@@ -139,12 +139,12 @@ async function handleSubmit() {
         </div>
 
         <!-- Empty state -->
-        <div v-else class="h-40 flex flex-col items-center justify-center gap-2 text-[#87858F]">
+        <div v-else class="h-40 flex flex-col items-center justify-center gap-2 text-[#87858F] dark:text-[#9A95B0]">
           <svg class="w-8 h-8 opacity-40" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
           </svg>
           <p class="text-sm font-medium">Arrastra o haz clic para subir</p>
-          <p class="text-xs opacity-60">JPG, PNG, WEBP</p>
+          <p class="text-xs opacity-60 dark:opacity-40">JPG, PNG, WEBP</p>
         </div>
 
         <input ref="fileInputRef" type="file" accept="image/*" class="hidden" @change="onFileInput" />
@@ -153,40 +153,40 @@ async function handleSubmit() {
       <!-- Fields -->
       <div class="space-y-4">
         <div>
-          <label class="block text-sm font-medium text-[#2C2C2A] mb-1.5">
-            Nombre <span class="text-[#C97C7C]">*</span>
+          <label class="block text-sm font-medium text-[#2C2C2A] dark:text-[#E2DFF0] mb-1.5">
+            Nombre <span class="text-[#C97C7C] dark:text-[#ECA1A1]">*</span>
           </label>
           <input
             v-model="nombre"
             type="text"
             placeholder="Ej. Tarta de Frutos Rojos"
-            class="w-full px-3 py-2.5 rounded-lg border border-black/[0.09] text-sm text-[#2C2C2A] placeholder-[#87858F] focus:outline-none focus:ring-2 focus:ring-lila-medium/30 focus:border-lila-medium transition-colors"
+            class="w-full px-3 py-2.5 rounded-lg border border-black/[0.09] dark:border-white/[0.05] text-sm text-[#2C2C2A] dark:text-[#E2DFF0] placeholder-[#87858F] focus:outline-none focus:ring-2 focus:ring-lila-medium/30 focus:border-lila-medium transition-colors bg-white dark:bg-[#13111A]"
           />
         </div>
         <div>
-          <label class="block text-sm font-medium text-[#2C2C2A] mb-1.5">
-            Categoría <span class="text-[#C97C7C]">*</span>
+          <label class="block text-sm font-medium text-[#2C2C2A] dark:text-[#E2DFF0] mb-1.5">
+            Categoría <span class="text-[#C97C7C] dark:text-[#ECA1A1]">*</span>
           </label>
           <input
             v-model="categoria"
             type="text"
             placeholder="Ej. Tartas, Cheesecakes..."
-            class="w-full px-3 py-2.5 rounded-lg border border-black/[0.09] text-sm text-[#2C2C2A] placeholder-[#87858F] focus:outline-none focus:ring-2 focus:ring-lila-medium/30 focus:border-lila-medium transition-colors"
+            class="w-full px-3 py-2.5 rounded-lg border border-black/[0.09] dark:border-white/[0.05] text-sm text-[#2C2C2A] dark:text-[#E2DFF0] placeholder-[#87858F] focus:outline-none focus:ring-2 focus:ring-lila-medium/30 focus:border-lila-medium transition-colors bg-white dark:bg-[#13111A]"
           />
         </div>
         <div>
-          <label class="block text-sm font-medium text-[#2C2C2A] mb-1.5">
-            Precio <span class="text-[#C97C7C]">*</span>
+          <label class="block text-sm font-medium text-[#2C2C2A] dark:text-[#E2DFF0] mb-1.5">
+            Precio <span class="text-[#C97C7C] dark:text-[#ECA1A1]">*</span>
           </label>
           <div class="relative">
-            <span class="absolute left-3 top-1/2 -translate-y-1/2 text-sm font-medium text-[#87858F]">S/</span>
+            <span class="absolute left-3 top-1/2 -translate-y-1/2 text-sm font-medium text-[#87858F] dark:text-[#9A95B0]">S/</span>
             <input
               v-model="precio"
               type="number"
               min="0"
               step="0.50"
               placeholder="0.00"
-              class="w-full pl-9 pr-3 py-2.5 rounded-lg border border-black/[0.09] text-sm text-[#2C2C2A] placeholder-[#87858F] focus:outline-none focus:ring-2 focus:ring-lila-medium/30 focus:border-lila-medium transition-colors"
+              class="w-full pl-9 pr-3 py-2.5 rounded-lg border border-black/[0.09] dark:border-white/[0.05] text-sm text-[#2C2C2A] dark:text-[#E2DFF0] placeholder-[#87858F] focus:outline-none focus:ring-2 focus:ring-lila-medium/30 focus:border-lila-medium transition-colors bg-white dark:bg-[#13111A]"
             />
           </div>
         </div>
@@ -196,7 +196,7 @@ async function handleSubmit() {
       <div class="flex justify-end gap-3 mt-6">
         <button
           @click="emit('update:modelValue', false)"
-          class="px-4 py-2 rounded-md text-sm font-medium text-[#87858F] hover:bg-gray-50 border border-black/[0.09] transition-colors"
+          class="px-4 py-2 rounded-md text-sm font-medium text-[#87858F] dark:text-[#9A95B0] hover:bg-gray-50 dark:hover:bg-white/[0.04] border border-black/[0.09] dark:border-white/[0.05] transition-colors"
         >
           Cancelar
         </button>
