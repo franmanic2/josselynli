@@ -10,7 +10,7 @@ const emit = defineEmits<{
 </script>
 
 <template>
-  <div class="bg-white rounded-xl border border-black/[0.09] shadow-sm overflow-hidden group hover:shadow-md transition-shadow">
+  <div class="bg-white dark:bg-[#171520] rounded-xl border border-black/[0.09] dark:border-white/[0.05] shadow-sm overflow-hidden group hover:shadow-md transition-shadow duration-200">
     <!-- Image -->
     <div class="h-44 bg-lila-tint overflow-hidden">
       <img
@@ -30,9 +30,9 @@ const emit = defineEmits<{
     <!-- Content -->
     <div class="p-4">
       <div class="mb-3">
-        <p class="text-xs text-[#87858F] font-medium mb-0.5">{{ postre.categoria }}</p>
-        <h3 class="font-semibold text-[#2C2C2A] tracking-tight truncate">{{ postre.nombre }}</h3>
-        <p class="text-lila-dark font-semibold mt-1">S/ {{ postre.precio.toFixed(2) }}</p>
+        <p class="text-xs text-[#87858F] dark:text-[#9A95B0] font-medium mb-0.5">{{ postre.categoria }}</p>
+        <h3 class="font-semibold text-[#2C2C2A] dark:text-[#E2DFF0] tracking-tight truncate">{{ postre.nombre }}</h3>
+        <p class="text-lila-dark dark:text-[#C8B4E3] font-semibold mt-1">S/ {{ postre.precio.toFixed(2) }}</p>
       </div>
 
       <!-- Actions -->
@@ -45,13 +45,13 @@ const emit = defineEmits<{
         </button>
         <button
           @click="emit('edit', postre)"
-          class="flex-1 py-1.5 rounded-md text-xs font-medium bg-lila-tint text-lila-dark hover:bg-lila-tint2 transition-colors"
+          class="flex-1 py-1.5 rounded-md text-xs font-medium bg-lila-tint dark:bg-lila-dark/20 text-lila-dark dark:text-[#C8B4E3] hover:bg-lila-tint2 dark:hover:bg-lila-dark/30 transition-colors"
         >
           Editar
         </button>
         <button
           @click="emit('delete', postre)"
-          class="flex-1 py-1.5 rounded-md text-xs font-medium bg-[#FBEDED] text-[#C97C7C] hover:bg-[#f7d9d9] transition-colors"
+          class="flex-1 py-1.5 rounded-md text-xs font-medium bg-[#FBEDED] dark:bg-[#3A1E1E] text-[#C97C7C] dark:text-[#ECA1A1] hover:bg-[#f7d9d9] dark:hover:bg-[#4E2A2A] transition-colors"
         >
           Eliminar
         </button>
