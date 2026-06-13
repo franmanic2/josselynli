@@ -35,39 +35,39 @@ async function handleLogin() {
 </script>
 
 <template>
-  <div class="min-h-screen bg-[#FAF9FC] flex items-center justify-center p-4">
+  <div class="min-h-screen bg-[#FAF9FC] dark:bg-[#0E0D13] flex items-center justify-center p-4 transition-colors duration-200">
     <div class="w-full max-w-sm">
       <!-- Logo -->
       <div class="text-center mb-8">
         <div class="w-16 h-16 bg-lila-dark rounded-2xl flex items-center justify-center mx-auto mb-4">
           <span class="text-white font-bold text-xl">JL</span>
         </div>
-        <h1 class="text-2xl font-semibold text-[#2C2C2A] tracking-tight">Joselyn Li</h1>
-        <p class="text-sm text-[#87858F] mt-1">Panel de Administración</p>
+        <h1 class="text-2xl font-semibold text-[#2C2C2A] dark:text-[#E2DFF0] tracking-tight">Joselyn Li</h1>
+        <p class="text-sm text-[#87858F] dark:text-[#9A95B0] mt-1">Panel de Administración</p>
       </div>
 
       <!-- Form -->
-      <div class="bg-white rounded-xl border border-black/[0.09] shadow-sm p-6">
-        <h2 class="font-semibold text-[#2C2C2A] mb-5 tracking-tight">Iniciar sesión</h2>
+      <div class="bg-white dark:bg-[#171520] rounded-xl border border-black/[0.09] dark:border-white/[0.05] shadow-sm p-6 transition-colors duration-200">
+        <h2 class="font-semibold text-[#2C2C2A] dark:text-[#E2DFF0] mb-5 tracking-tight">Iniciar sesión</h2>
         <form @submit.prevent="handleLogin" class="space-y-4">
           <div>
-            <label class="block text-sm font-medium text-[#2C2C2A] mb-1.5">Usuario</label>
+            <label class="block text-sm font-medium text-[#2C2C2A] dark:text-[#E2DFF0] mb-1.5">Usuario</label>
             <input
               v-model="usuario"
               type="text"
               placeholder="admin"
               autocomplete="username"
-              class="w-full px-3 py-2.5 rounded-lg border border-black/[0.09] text-sm text-[#2C2C2A] placeholder-[#87858F] focus:outline-none focus:ring-2 focus:ring-lila-medium/30 focus:border-lila-medium transition-colors"
+              class="w-full px-3 py-2.5 rounded-lg border border-black/[0.09] dark:border-white/[0.05] text-sm text-[#2C2C2A] dark:text-[#E2DFF0] placeholder-[#87858F] focus:outline-none focus:ring-2 focus:ring-lila-medium/30 focus:border-lila-medium transition-colors bg-white dark:bg-[#13111A]"
             />
           </div>
           <div>
-            <label class="block text-sm font-medium text-[#2C2C2A] mb-1.5">Contraseña</label>
+            <label class="block text-sm font-medium text-[#2C2C2A] dark:text-[#E2DFF0] mb-1.5">Contraseña</label>
             <input
               v-model="password"
               type="password"
               placeholder="••••••••"
               autocomplete="current-password"
-              class="w-full px-3 py-2.5 rounded-lg border border-black/[0.09] text-sm text-[#2C2C2A] placeholder-[#87858F] focus:outline-none focus:ring-2 focus:ring-lila-medium/30 focus:border-lila-medium transition-colors"
+              class="w-full px-3 py-2.5 rounded-lg border border-black/[0.09] dark:border-white/[0.05] text-sm text-[#2C2C2A] dark:text-[#E2DFF0] placeholder-[#87858F] focus:outline-none focus:ring-2 focus:ring-lila-medium/30 focus:border-lila-medium transition-colors bg-white dark:bg-[#13111A]"
             />
           </div>
           <button
