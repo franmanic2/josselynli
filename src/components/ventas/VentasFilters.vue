@@ -30,23 +30,23 @@ const months = [
     <select
       :value="selectedMonth"
       @change="emit('update:selectedMonth', ($event.target as HTMLSelectElement).value)"
-      class="px-3 py-2 rounded-lg border border-black/[0.09] text-sm text-[#2C2C2A] focus:outline-none focus:ring-2 focus:ring-lila-medium/30 focus:border-lila-medium bg-white transition-colors"
+      class="px-3 py-2 rounded-lg border border-black/[0.09] dark:border-white/[0.05] text-sm text-[#2C2C2A] dark:text-[#E2DFF0] focus:outline-none focus:ring-2 focus:ring-lila-medium/30 focus:border-lila-medium bg-white dark:bg-[#13111A] transition-colors"
     >
-      <option v-for="m in months" :key="m.value" :value="m.value">{{ m.label }}</option>
+      <option v-for="m in months" :key="m.value" :value="m.value" class="dark:bg-[#13111A]">{{ m.label }}</option>
     </select>
 
     <select
       :value="selectedEstado"
       @change="emit('update:selectedEstado', ($event.target as HTMLSelectElement).value)"
-      class="px-3 py-2 rounded-lg border border-black/[0.09] text-sm text-[#2C2C2A] focus:outline-none focus:ring-2 focus:ring-lila-medium/30 focus:border-lila-medium bg-white transition-colors"
+      class="px-3 py-2 rounded-lg border border-black/[0.09] dark:border-white/[0.05] text-sm text-[#2C2C2A] dark:text-[#E2DFF0] focus:outline-none focus:ring-2 focus:ring-lila-medium/30 focus:border-lila-medium bg-white dark:bg-[#13111A] transition-colors"
     >
       <option value="">Todos</option>
       <option value="pendiente">Pendiente</option>
       <option value="entregado">Entregado</option>
     </select>
 
-    <span class="text-sm text-[#87858F] ml-auto">
-      <span class="font-semibold text-[#2C2C2A]">{{ count }}</span> pedidos encontrados
+    <span class="text-sm text-[#87858F] dark:text-[#9A95B0] ml-auto">
+      <span class="font-semibold text-[#2C2C2A] dark:text-[#E2DFF0]">{{ count }}</span> pedidos encontrados
     </span>
   </div>
 </template>
