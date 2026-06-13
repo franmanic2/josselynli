@@ -25,8 +25,8 @@ const filteredVentas = computed(() => {
 <template>
   <div>
     <div class="mb-6">
-      <h2 class="text-xl font-semibold text-[#2C2C2A] tracking-tight">Registro de Ventas</h2>
-      <p class="text-sm text-[#87858F] mt-0.5">Historial completo de pedidos</p>
+      <h2 class="text-xl font-semibold text-[#2C2C2A] dark:text-[#E2DFF0] tracking-tight">Registro de Ventas</h2>
+      <p class="text-sm text-[#87858F] dark:text-[#9A95B0] mt-0.5">Historial completo de pedidos</p>
     </div>
 
     <VentasFilters
