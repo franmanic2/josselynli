@@ -22,7 +22,7 @@ const emit = defineEmits<{ 'update:modelValue': [val: boolean] }>()
         @click.self="emit('update:modelValue', false)"
       >
         <div
-          class="bg-white rounded-xl shadow-lg w-full relative"
+          class="bg-white dark:bg-[#171520] border dark:border-white/[0.05] rounded-xl shadow-lg w-full relative transition-colors duration-200"
           :style="{ maxWidth: maxWidth || '480px' }"
           @click.stop
         >
